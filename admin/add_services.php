@@ -20,6 +20,7 @@ if(isset($add)){
 
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
+	<h1>Add Service Details</h1><hr>
 	<tr>
 		<th>Service Name</th>
 		<td><input type="text" name="service_name" class="form-control"/>

@@ -11,7 +11,7 @@ if($admin=="")
 <!DOCTYPE html>
 <html lang="en">
   <head>
-     <title>Bliss Hotel</title>
+     <title>Bliss Hotel Admin Dashboard</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -30,26 +30,28 @@ if($admin=="")
 <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
+          <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Welcome <?php echo $admin; ?></a>
+          </button> -->
+          <a class="navbar-brand" href="dashboard.php">Welcome <?php echo $admin; ?></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+          <div class="nav navbar-nav navbar-right">
+            <li><a href="logout.php">Logout</a>
+          </div>
+        <!-- <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="dashboard.php?option=admin_profile">Profile</a></li>
             <li><a href="logout.php">Logout</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-3 col-md-2 sidebar show">
           <ul class="nav nav-sidebar">
 						<li><a href="dashboard.php?option=rooms">Rooms</a></li>
 						<li><a href="dashboard.php?option=booking_details">Booking Details</a></li>
@@ -107,10 +109,6 @@ else if($opt=="add_rooms")
 {
 	include('add_rooms.php');
 }
-else if($opt=="delete_room")
-{
-	include('delete_room.php');
-}
 else if($opt=="update_room")
 {
   include('update_room.php');
@@ -126,6 +124,22 @@ else if($opt=="user_registration")
 else if($opt=="staff")
 {
 	include('staff.php');
+}
+else if($opt=="add_staff")
+{
+	include('add_staff.php');
+}
+else if($opt=="update_staff")
+{
+	include('update_staff.php');
+}
+else if($opt=="add_attendance")
+{
+	include('add_attendance.php');
+}
+else if($opt=="view_attendance")
+{
+	include('view_attendance.php');
 }
 else if($opt=="services")
 {
@@ -166,6 +180,9 @@ else if($opt=="add_vendor")
 else if($opt=="send_mail")
 {
 	include('sendmail.php');
+}
+else{
+	include($opt.'.php');
 }
 ?>
 

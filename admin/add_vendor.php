@@ -18,6 +18,7 @@ if(isset($add))
 
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
+	<h1>Add Vendor Details</h1><hr>
 	<tr>
 		<th>Vendor Name</th>
 		<td><input type="text" name="name"  class="form-control"/>

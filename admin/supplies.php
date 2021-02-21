@@ -7,7 +7,6 @@
 		}
 	}
 </script>
-
 <table class="table table-bordered table-striped table-hover">
 	<h1>Supplies Details</h1><hr>
 	<tr>
@@ -17,7 +16,7 @@
 		<th>Supply id</th>
 		<th>Supply Name</th>
 		<th>Category</th>
-		<th>Stock</th>
+		<th width="300">Stock</th>
 		<th>Last Restocked</th>
 		<th>Vendor Name</th>
 		<th>Update</th>
@@ -25,7 +24,6 @@
 	</tr>
 
 <?php
-$i=1;
 $sql=mysqli_query($con,"select * from suppliesmst s inner join vendormst v on v.vendor_id=s.vendor_id");
 while($res=mysqli_fetch_assoc($sql))
 {
@@ -41,7 +39,17 @@ while($res=mysqli_fetch_assoc($sql))
 		<td><?php echo $res['Category']; ?></td>
 		<td>
 			<input type="hidden" name="old_stock" value="<?php echo $res['Stock']; ?>" />
-			<input type="text" name="new_stock" value="<?php echo $res['Stock']; ?>" onChange="this.form.submit()">
+			<div class="input-group input-group-sm">
+		  	<div class="input-group-btn">
+					<a class="btn btn-danger" href="updateStock.php?op=m&val=10&id=<?php echo $res['Supply_id']; ?>" >-10</a>
+						<a class="btn btn-danger" href="updateStock.php?op=m&val=1&id=<?php echo $res['Supply_id']; ?>" >-1</a>
+		  	</div>
+				<input type="text" name="new_stock" value="<?php echo $res['Stock']; ?>" onChange="this.form.submit()" class="form-control">
+			  <div class="input-group-btn">
+					<a class="btn btn-success" href="updateStock.php?op=p&val=1&id=<?php echo $res['Supply_id']; ?>" >+1</a>
+					<a class="btn btn-success" href="updateStock.php?op=p&val=10&id=<?php echo $res['Supply_id']; ?>" >+10</a>
+			  </div>
+			</div>
 		</td>
 		<td>
 			<input type="hidden" name="last_restocked" value="<?php echo $res['Last_restocked']; ?>" />
@@ -49,8 +57,8 @@ while($res=mysqli_fetch_assoc($sql))
 		</td>
 		<td><?php echo $res['Vendor_Name']; ?></td>
 
-		<td><a href="dashboard.php?option=update_supply&id=<?php echo $res['Supply_id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-		<td><a href="#" onclick="delSupply('<?php echo $res['Supply_id']; ?>')"><span class="glyphicon glyphicon-remove" style='color:red'></span></a></td>
+		<td><a class="btn btn-primary" href="dashboard.php?option=update_supply&id=<?php echo $res['Supply_id']; ?>">Update Supply</a></td>
+		<td><a class="btn btn-danger" href="#" onclick="delSupply('<?php echo $res['Supply_id']; ?>')">Delete Supply</a></td>
 	</tr>
 </form>
 <?php

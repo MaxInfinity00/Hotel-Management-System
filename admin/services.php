@@ -28,18 +28,15 @@ $sql=mysqli_query($con,"select * from servicemst sv left join suppliesmst s on s
 while($res=mysqli_fetch_assoc($sql))
 {
 ?>
-<form action="updateStock.php" method="post">
-
 <tr>
 		<td><?php echo $res['Service_id']; ?></td>
 		<td><?php echo $res['Service_Name']; ?></td>
 		<td><?php echo $res['Supply_Name']; ?></td>
 		<td><?php echo $res['Cost']; ?></td>
 
-		<td><a href="dashboard.php?option=update_service&id=<?php echo $res['Service_id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-		<td><a href="#" onclick="delService('<?php echo $res['Service_id']; ?>')"><span class="glyphicon glyphicon-remove" style='color:red'></span></a></td>
+		<td><a class="btn btn-primary" href="dashboard.php?option=update_service&id=<?php echo $res['Service_id']; ?>">Update Service</a></td>
+		<td><a class="btn btn-danger" href="#" onclick="delService('<?php echo $res['Service_id']; ?>')">Delete Service</a></td>
 	</tr>
-</form>
 <?php
 }
 

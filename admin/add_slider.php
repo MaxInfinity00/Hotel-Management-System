@@ -1,6 +1,6 @@
 <?php
 
-if(isset($update))
+if(isset($add))
 {
 	$imgNew=basename($_FILES['img']['name']);
 
@@ -14,20 +14,30 @@ if(isset($update))
 
 }
 ?>
+<script type="text/javascript">
+$(function(){
+	$('#imageSelector').change(function(event){
+    $("#displayImg").attr('src',URL.createObjectURL(event.target.files[0]));
+	});
+});
+</script>
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
-	<tr style="height:40">
+	<h1>Add Slider Image</h1><hr>
+	<tr>
+		<th>Image</th>
+		<td>
+			<img id="displayImg" width="200" height="100">
+			<input type="file" id="imageSelector" name="img" accept="image/*" class="form-control"/>
+		</td>
+	</tr>
+	<tr>
 		<th>Caption</th>
 		<td><input type="text" name="cap" class="form-control"/></td>
 	</tr>
 	<tr>
-		<th>Image</th>
-		<td><input type="file" name="img" accept="image/*" class="form-control"/>
-		</td>
-	</tr>
-	<tr>
 		<td colspan="2">
-			<input type="submit" class="btn btn-primary" value="Add new Slider" name="update"/>
+			<input type="submit" class="btn btn-primary" value="Add new Slider" name="add"/>
 		</td>
 	</tr>
 </table>
