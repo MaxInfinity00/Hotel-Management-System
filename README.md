@@ -8,7 +8,7 @@ mysql -u root -p hotel < hotel.sql
 your username could be different tho
 
 dont forget to install xampp to run this project
-Put these files in a folder [Ex: Hotel_Management_System] and then put that folder in a folder called htcdocs in your xampp installation folder
+Put these files in a folder [Ex: Hotel_Management_System] and then put that folder in a folder called htdocs in your xampp installation folder
 then u can access this project by starting mysql and apache server from xampp control panel
 and going to http://localhost/Hotel_management_system
 access admin side by going to http://localhost/Hotel_management_system/admin
