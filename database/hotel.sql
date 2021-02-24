@@ -135,7 +135,7 @@ CREATE TABLE `create_account` (
 
 LOCK TABLES `create_account` WRITE;
 /*!40000 ALTER TABLE `create_account` DISABLE KEYS */;
-INSERT INTO `create_account` VALUES (4,'sunil Vishwakarma','amitvish9999@gmail.com','8190',7275308190,'kolpanday,azamgarh','male','China','img2.png'),(7,'suraj vishwakarma','suraj@gmail.com','8190',9120140055,'kolpanday,azamgarh','male','India','Capture.PNG'),(8,'Om','om@gmail.com','8090',7890809,'bnjkghjbjb','male','india',''),(9,'Ragini Vishwakarma','ragini@gmail.com','1234`',7275540965,'kolpanday(Kolgghat),Azamgarh','male','India','6cy5bLaei.jpg'),(10,'Anjali Vishwakarma','anjali@gmail.com','123',7275308190,'kolpanday azamgarh','male','India','God_Shiva_Wallpaper.jpg'),(11,'mrityunjai','mr8090@gmail.com','8190',71727534567,'kolpghta','male','India','amazing-shiv-shankar-images-3d-shiva-on-pinterest-shiv-shankar-images-3d.jpg'),(12,'sanjeev','sanjeevtech2@gmail.com','1234',9015501897,'Noida','male','India','20171120_175518.jpg'),(13,'Udit Shroff','uditshroff00@gmail.com','mypassword',9512765185,'Sujata Flats\r\nA/9','male','India','Download Happy Diwali Greeting With Diya And Text Space for free.jpg');
+INSERT INTO `create_account` VALUES (4,'sunil Vishwakarma','amitvish9999@gmail.com','8190',7275308190,'kolpanday,azamgarh','male','China','img2.png'),(7,'suraj vishwakarma','suraj@gmail.com','8190',9120140055,'kolpanday,azamgarh','male','India','Capture.PNG'),(8,'Om','om@gmail.com','8090',7890809,'bnjkghjbjb','male','india',''),(9,'Ragini Vishwakarma','ragini@gmail.com','1234`',7275540965,'kolpanday(Kolgghat),Azamgarh','male','India','6cy5bLaei.jpg'),(10,'Anjali Vishwakarma','anjali@gmail.com','123',7275308190,'kolpanday azamgarh','male','India','God_Shiva_Wallpaper.jpg'),(11,'mrityunjai','mr8090@gmail.com','8190',71727534567,'kolpghta','male','India','amazing-shiv-shankar-images-3d-shiva-on-pinterest-shiv-shankar-images-3d.jpg'),(12,'sanjeev','sanjeevtech2@gmail.com','1234',9015501897,'Noida','male','India','20171120_175518.jpg'),(13,'Udit Shroff','uditshroff00@gmail.com','mypassword',9512765185,'Sujata FlatsA/9','male','India','Download Happy Diwali Greeting With Diya And Text Space for free.jpg');
 /*!40000 ALTER TABLE `create_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,7 +337,7 @@ CREATE TABLE `room_booking_details` (
 
 LOCK TABLES `room_booking_details` WRITE;
 /*!40000 ALTER TABLE `room_booking_details` DISABLE KEYS */;
-INSERT INTO `room_booking_details` VALUES (5,'Sumit','sumit@gmail.com',7398713060,'kolpanday,azamgarh','Azamgarh','U.P.',276001,'India','Deluxe Room','2019-12-05','12:00','2019-01-06','single'),(6,'Om','om@gmail.com',7890809,'bnjkghjbjb','azamgarh','up',276001,'India','Deluxe Room','2019-05-08','08:00','2019-06-04','single'),(7,'Ragini Vishwakarma','ragini@gmail.com',727550965,'Kolpanday,Kolghat,Azamgarh','Azamgarh','U.P',276001,'India','Standard Room','2019-12-06','08:00','2019-12-06','single'),(8,'Anlaji viahwakarma','anjali@gmail.com',7275308190,'kolpanday azamgarh','azamgarh','U.P',276001,'India','Standard Room','2019-12-06','08:00','2019-12-06','single'),(12,'sanjeev','sanjeevtech2@gmail.com',0,'dfjdlfj','','',0,'','Suite Room','2019-05-22','22:57','2017-10-31','single'),(13,'Udit Shroff','uditshroff00@gmail.com',9512765185,'Sujata Flats\r\nA/9','India','',1234,'','Deluxe Room','0056-04-14','04:34','0345-05-04','single');
+INSERT INTO `room_booking_details` VALUES (5,'Sumit','sumit@gmail.com',7398713060,'kolpanday,azamgarh','Azamgarh','U.P.',276001,'India','Deluxe Room','2019-12-05','12:00','2019-01-06','single'),(6,'Om','om@gmail.com',7890809,'bnjkghjbjb','azamgarh','up',276001,'India','Deluxe Room','2019-05-08','08:00','2019-06-04','single'),(7,'Ragini Vishwakarma','ragini@gmail.com',727550965,'Kolpanday,Kolghat,Azamgarh','Azamgarh','U.P',276001,'India','Standard Room','2019-12-06','08:00','2019-12-06','single'),(8,'Anlaji viahwakarma','anjali@gmail.com',7275308190,'kolpanday azamgarh','azamgarh','U.P',276001,'India','Standard Room','2019-12-06','08:00','2019-12-06','single'),(12,'sanjeev','sanjeevtech2@gmail.com',0,'dfjdlfj','','',0,'','Suite Room','2019-05-22','22:57','2017-10-31','single');
 /*!40000 ALTER TABLE `room_booking_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,11 +350,14 @@ DROP TABLE IF EXISTS `roommst`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roommst` (
   `Room_id` smallint NOT NULL,
-  `Room_type` enum('Deluxe Room Ocean View','Superior Room Sea View','Apollo Suite 1 Bedroom Sea View','Deluxe Room City View','Deluxe Room Sea View') NOT NULL,
+  `Room_type` varchar(10) DEFAULT NULL,
   `Room_tariff` decimal(10,2) NOT NULL,
   `Room_Status` enum('Reserved','Vacant','Occupied','Unavailable') NOT NULL,
-  `room_desp` varchar(450) DEFAULT NULL,
-  PRIMARY KEY (`Room_id`)
+  `Notes` varchar(450) DEFAULT NULL,
+  `Active_Status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`Room_id`),
+  KEY `fk_room_type` (`Room_type`),
+  CONSTRAINT `fk_room_type` FOREIGN KEY (`Room_type`) REFERENCES `roomtypemst` (`Room_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -364,7 +367,7 @@ CREATE TABLE `roommst` (
 
 LOCK TABLES `roommst` WRITE;
 /*!40000 ALTER TABLE `roommst` DISABLE KEYS */;
-INSERT INTO `roommst` VALUES (201,'Deluxe Room Sea View',20000.00,'Unavailable','Located on higher floors, with magnificent views of the Arabian Sea. These 26 sq. mt. rooms offer a luxurious refugee frantic pace of the city. These rooms also feature a balcony with arched windows offering panoramic views of the sea. '),(202,'Deluxe Room Sea View',20000.00,'Occupied','Located on higher floors, with magnificent views of the Arabian Sea. These 26 sq. mt. rooms offer a luxurious refugee frantic pace of the city. These rooms also feature a balcony with arched windows offering panoramic views of the sea. '),(203,'Deluxe Room Sea View',20000.00,'Vacant','Located on higher floors, with magnificent views of the Arabian Sea. These 26 sq. mt. rooms offer a luxurious refugee frantic pace of the city. These rooms also feature a balcony with arched windows offering panoramic views of the sea. '),(1011,'Deluxe Room City View',7000.00,'Occupied','Located on higher floors of the Tower, these contemporary rooms are tastefully appointed, offering uninterrupted views of the Mumbai skyline. Fully equipped with all modern facilities, digital connectivity and excellent service, these rooms also offer access to the hotel?s gymnasium and spa. These rooms also feature a balcony with arched windows.'),(1012,'Deluxe Room City View',7000.00,'Vacant','Located on higher floors of the Tower, these contemporary rooms are tastefully appointed, offering uninterrupted views of the Mumbai skyline. Fully equipped with all modern facilities, digital connectivity and excellent service, these rooms also offer access to the hotel?s gymnasium and spa. These rooms also feature a balcony with arched windows.'),(1013,'Deluxe Room City View',7000.00,'Occupied','Located on higher floors of the Tower, these contemporary rooms are tastefully appointed, offering uninterrupted views of the Mumbai skyline. Fully equipped with all modern facilities, digital connectivity and excellent service, these rooms also offer access to the hotel?s gymnasium and spa. These rooms also feature a balcony with arched windows.'),(1101,'Superior Room Sea View',12000.00,'Vacant','Overlooking the Gateway of India & the Arabian Sea, the 26 sq. mt. Superior Sea View rooms are designed with a blend of Indian aesthetics and European flair. Fully equipped with all modern facilities, digital connectivity and excellent service, the rooms at Taj Mahal Tower also offer access to the hotel?s gymnasium and spa. These rooms also feature a balcony with arched windows offering panoramic views of the sea.'),(1201,'Apollo Suite 1 Bedroom Sea View',25000.00,'Reserved','These picturesque sea-facing suites are carefully designed & lavishly appointed offering panoramic views of the Arabian Sea. With a large living area, expansive bedroom and a marble-finished bathroom with a tub, these suites are spacious and airy. The suites also boast of a lovely balcony that overlooks the Gateway of India. These include two way airport transfers and breakfast.'),(1202,'Deluxe Room Sea View',25000.00,'Vacant','These picturesque sea-facing suites are carefully designed & lavishly appointed offering panoramic views of the Arabian Sea. With a large living area, expansive bedroom and a marble-finished bathroom with a tub, these suites are spacious and airy. The suites also boast of a lovely balcony that overlooks the Gateway of India. These include two way airport transfers and breakfast.');
+INSERT INTO `roommst` VALUES (201,'RM102',20000.00,'Unavailable','Complains about broken air conditioning. lel',1),(202,'RM101',20000.00,'Occupied','',1),(203,'RM101',20000.00,'Vacant','',1),(1011,'RM101',7000.00,'Occupied','',1),(1012,'RM101',7000.00,'Unavailable','Stains on the room floor, to get cleaned',1),(1013,'RM101',7000.00,'Occupied','',1),(1101,'RM103',12000.00,'Vacant','',1),(1201,'RM104',25000.00,'Reserved','Reserved for Mr. and Mrs. Das',1),(1202,'RM104',25000.00,'Unavailable','',1);
 /*!40000 ALTER TABLE `roommst` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -397,6 +400,33 @@ INSERT INTO `rooms` VALUES (28,512,'Deluxe Room',15000,'The Contemporary yet sim
 UNLOCK TABLES;
 
 --
+-- Table structure for table `roomtypemst`
+--
+
+DROP TABLE IF EXISTS `roomtypemst`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `roomtypemst` (
+  `Room_type_id` varchar(10) NOT NULL,
+  `Room_Name` varchar(50) NOT NULL,
+  `Image` varchar(100) NOT NULL,
+  `Room_tariff` decimal(10,2) DEFAULT NULL,
+  `Room_desc` varchar(450) NOT NULL,
+  PRIMARY KEY (`Room_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roomtypemst`
+--
+
+LOCK TABLES `roomtypemst` WRITE;
+/*!40000 ALTER TABLE `roomtypemst` DISABLE KEYS */;
+INSERT INTO `roomtypemst` VALUES ('RM101','Deluxe Room Sea View','1.png',20000.00,'These picturesque sea-facing suites are carefully designed & lavishly appointed offering panoramic views of the Arabian Sea. With a large living area, expansive bedroom and a marble-finished bathroom with a tub, these suites are spacious and airy. The suites also boast of a lovely balcony that overlooks the Gateway of India. These include two way airport transfers and breakfast.'),('RM102','Deluxe Room City View','1.png',7000.00,'Located on higher floors of the Tower, these contemporary rooms are tastefully appointed, offering uninterrupted views of the Mumbai skyline. Fully equipped with all modern facilities, digital connectivity and excellent service, these rooms also offer access to the hotel?s gymnasium and spa. These rooms also feature a balcony with arched windows.'),('RM103','Superior Room Sea View','1.png',12000.00,'Overlooking the Gateway of India & the Arabian Sea, the 26 sq. mt. Superior Sea View rooms are designed with a blend of Indian aesthetics and European flair. Fully equipped with all modern facilities, digital connectivity and excellent service, the rooms at The Bliss also offer access to the hotel?s gymnasium and spa. These rooms also feature a balcony with arched windows offering panoramic views of the sea.'),('RM104','Apollo Suite 1 Bedroom Sea View','1.png',25000.00,'These picturesque sea-facing suites are carefully designed & lavishly appointed offering panoramic views of the Arabian Sea. With a large living area, expansive bedroom and a marble-finished bathroom with a tub, these suites are spacious and airy. The suites also boast of a lovely balcony that overlooks the Gateway of India. These include two way airport transfers and breakfast.');
+/*!40000 ALTER TABLE `roomtypemst` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `servicemst`
 --
 
@@ -408,6 +438,7 @@ CREATE TABLE `servicemst` (
   `Supply_id` varchar(10) DEFAULT NULL,
   `Service_Name` varchar(30) NOT NULL,
   `Cost` decimal(10,2) NOT NULL,
+  `Active_Status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Service_id`),
   KEY `Supply_id` (`Supply_id`),
   CONSTRAINT `servicemst_ibfk_1` FOREIGN KEY (`Supply_id`) REFERENCES `suppliesmst` (`Supply_id`)
@@ -420,7 +451,7 @@ CREATE TABLE `servicemst` (
 
 LOCK TABLES `servicemst` WRITE;
 /*!40000 ALTER TABLE `servicemst` DISABLE KEYS */;
-INSERT INTO `servicemst` VALUES ('SV101',NULL,'Room_Restock',0.00),('SV102','S109','Mini_bar_Juice',250.00),('SV103','S110','Mini_bar_Chips',100.00),('SV104','S111','Mini_bar_Nuts',300.00),('SV105','S112','Mini_bar_Powerbar',250.00),('SV106',NULL,'Tea',40.00),('SV107','S113','Bulbs',20.00);
+INSERT INTO `servicemst` VALUES ('SV101',NULL,'Room_Restock',0.00,1),('SV102','S109','Mini_bar_Juice',250.00,1),('SV103','S110','Mini_bar_Chips',100.00,1),('SV104','S111','Mini_bar_Nuts',300.00,1),('SV105','S112','Mini_bar_Powerbar',250.00,1),('SV106',NULL,'Tea',40.00,1),('SV107','S113','Bulbs',20.00,1);
 /*!40000 ALTER TABLE `servicemst` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -436,7 +467,7 @@ CREATE TABLE `slider` (
   `image` varchar(100) NOT NULL,
   `caption` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -445,7 +476,7 @@ CREATE TABLE `slider` (
 
 LOCK TABLES `slider` WRITE;
 /*!40000 ALTER TABLE `slider` DISABLE KEYS */;
-INSERT INTO `slider` VALUES (3,'img3.jpg',''),(6,'img2.jpg',''),(8,'img1.png','');
+INSERT INTO `slider` VALUES (18,'Slider4.jpg','Come and Enjoy your stay'),(19,'Slider2.jpg','Luxury Vacations, Premium Experience'),(20,'Slider5.jpg','Incredible Sea View');
 /*!40000 ALTER TABLE `slider` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -471,7 +502,7 @@ CREATE TABLE `staffattendancemst` (
 
 LOCK TABLES `staffattendancemst` WRITE;
 /*!40000 ALTER TABLE `staffattendancemst` DISABLE KEYS */;
-INSERT INTO `staffattendancemst` VALUES ('A001','2021-11-22 04:30:45','2021-01-22 16:59:55'),('A101','2021-01-22 04:00:25','2021-01-22 16:55:54'),('BB101','2021-01-22 03:30:45','2021-01-22 17:21:58'),('BB101','2021-01-22 04:30:52','2021-12-22 16:50:33'),('FDM1001','2021-10-22 16:30:45','2021-10-22 05:00:33'),('HK1201','2021-01-22 16:50:55','2021-01-22 05:20:55'),('HK1202','2021-01-22 04:30:45','2021-01-22 16:50:55'),('HK1202','2021-11-22 04:30:15','2021-01-22 17:01:23');
+INSERT INTO `staffattendancemst` VALUES ('A001','2021-01-01 02:22:00','2021-01-02 16:00:00'),('A001','2021-02-19 15:20:00',NULL),('A001','2021-02-19 15:22:00','2021-02-19 19:52:00'),('A001','2021-02-19 17:23:00','2021-02-19 21:53:00'),('A001','2021-02-24 09:23:00','2021-02-24 09:24:00'),('A101','2021-01-22 04:00:25','2021-01-22 16:55:54'),('BB101','2021-01-22 03:30:45','2021-01-22 17:21:58'),('BB101','2021-01-22 04:30:52','2021-12-22 16:50:33'),('FDM1001','2021-10-22 16:30:45','2021-10-22 05:00:33'),('HK1201','2021-01-22 16:50:55','2021-01-22 05:20:55'),('HK1202','2021-01-22 04:30:45','2021-01-22 16:50:55'),('HK1202','2021-11-22 04:30:15','2021-01-22 17:01:23'),('qwerty','2021-02-21 15:13:00','2021-02-21 15:13:00'),('qwerty','2021-02-21 15:52:00',NULL);
 /*!40000 ALTER TABLE `staffattendancemst` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -495,6 +526,7 @@ CREATE TABLE `staffmst` (
   `Image` varchar(500) NOT NULL,
   `Leaves_per_month` tinyint NOT NULL,
   `Unclaimed_leave` tinyint NOT NULL,
+  `Active_Status` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`Staff_id`),
   KEY `User_id` (`User_id`),
   CONSTRAINT `staffmst_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `loginmst` (`User_id`)
@@ -507,7 +539,7 @@ CREATE TABLE `staffmst` (
 
 LOCK TABLES `staffmst` WRITE;
 /*!40000 ALTER TABLE `staffmst` DISABLE KEYS */;
-INSERT INTO `staffmst` VALUES ('A001','A001','Ram Kumar','Senior Manager',50000,'701-Kala Buildings,Nr.SB Bank,Dwarka',45,'Male',8893209311,'A001',4,9),('A101',NULL,'Abhi chopra','Accountant',90000,'801 Palace,sector21',28,'Female',9283558393,'A101',4,3),('BB101',NULL,'Ramesh Jain','Bellboy',34000,'302 northside park,sector23',37,'Female',9374832929,'BB101',4,1),('FDM1001','FDM1001','Leela Agrawaal','FrontdeskManager',35000,'212 nirmal park,sector12',36,'Female',9764924321,'FDM1001',4,2),('FDM1002','FDM1002','Meena Soni','FrontdeskManager',34000,'302 northside park,sector23',37,'Female',9374832929,'FDM1002',4,5),('FDM1003','FDM1003','Rohan Haldani','FrontdeskManager',30000,'302 Amar residency,sector23',37,'Male',9993746451,'FDM1003',4,4),('GM101',NULL,'Sheena Chowdhary','General Manager',90000,'B1 Prism Society,sector15',55,'Male',9296541929,'GM101',4,5),('HK1201',NULL,'Tina Patel','HouseKeeper',6000,'2 StaffQuaters,sector23',41,'Female',9373444929,'HK1201',4,2),('HK1202',NULL,'Raju Patel','HouseKeeper',6000,'7 StaffQuaters,sector23',32,'Male',9227149269,'HK1202',4,9);
+INSERT INTO `staffmst` VALUES ('A001','A001','Ram Kumar','Senior Manager',50000,'701-Kala Buildings,Nr.SB Bank,Dwarka',45,'Male',8893209311,'parking.jpg',4,9,1),('A101',NULL,'Abhi chopra','Accountant',90000,'801 Palace,sector21',28,'Female',9283558393,'A101',4,3,1),('BB101',NULL,'Ramesh Jain','Bellboy',34000,'302 northside park,sector23',37,'Female',9374832929,'tb.jpg',4,1,1),('FDM1001','FDM1001','Leela Agrawaal','FrontdeskManager',35000,'212 nirmal park,sector12',36,'Female',9764924321,'FDM1001',4,2,1),('FDM1002','FDM1002','Meena Soni','FrontdeskManager',34000,'302 northside park,sector23',37,'Female',9374832929,'FDM1002',4,5,1),('FDM1003','FDM1003','Rohan Haldani','FrontdeskManager',30000,'302 Amar residency,sector23',37,'Male',9993746451,'FDM1003',4,4,1),('GM101',NULL,'Sheena Chowdhary','General Manager',90000,'B1 Prism Society,sector15',55,'Male',9296541929,'GM101',4,5,1),('HK1201',NULL,'Tina Patel','HouseKeeper',6000,'2 StaffQuaters,sector23',41,'Female',9373444929,'HK1201',4,2,1),('HK1202',NULL,'Raju Patel','HouseKeeper',6000,'7 StaffQuaters,sector23',32,'Male',9227149269,'HK1202',4,9,1),('qwerty',NULL,'Ash Ketchump','manager',11000,'din da hood',37,'Others',123456,'WhatsApp Image 2020-11-01 at 19.25.33 (2).jpeg',7,6,1);
 /*!40000 ALTER TABLE `staffmst` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -525,6 +557,7 @@ CREATE TABLE `suppliesmst` (
   `Category` enum('Cleaning','tools','linens','toiletries','electrical','others','stationery','Snacks') NOT NULL,
   `Stock` smallint NOT NULL,
   `Last_restocked` date NOT NULL,
+  `Active_Status` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`Supply_id`),
   KEY `Vendor_id` (`Vendor_id`),
   CONSTRAINT `suppliesmst_ibfk_1` FOREIGN KEY (`Vendor_id`) REFERENCES `vendormst` (`Vendor_id`)
@@ -537,7 +570,7 @@ CREATE TABLE `suppliesmst` (
 
 LOCK TABLES `suppliesmst` WRITE;
 /*!40000 ALTER TABLE `suppliesmst` DISABLE KEYS */;
-INSERT INTO `suppliesmst` VALUES ('S101','V101','Soap','toiletries',179,'2021-02-17'),('S102','V101','Shampoo','toiletries',210,'2021-02-17'),('S103','V101','Conditioner','toiletries',231,'2021-03-12'),('S104','V101','Hand Wash','toiletries',172,'2021-03-12'),('S105','V101','ToothPaste','toiletries',172,'2021-03-12'),('S106','V108','King Size bed sheets','linens',172,'2021-02-15'),('S107','V106','Cushion Cover','linens',172,'2021-03-15'),('S108','V103','Sanitizer','toiletries',172,'2021-03-16'),('S109','V107','Chips','Snacks',74,'2021-03-17'),('S110','V107','Juice','Snacks',32,'2021-03-17'),('S111','V107','Nuts','Snacks',47,'2021-03-17'),('S112','V107','PowerBar','Snacks',88,'2021-02-17'),('S113','V102','Bulbs','electrical',100,'2021-02-15');
+INSERT INTO `suppliesmst` VALUES ('S101','V101','Soap','toiletries',111,'2021-02-21',0),('S102','V101','Shampoo','toiletries',14,'2021-02-24',0),('S103','V101','Conditioner','toiletries',200,'2021-02-24',1),('S104','V101','Hand Wash','toiletries',177,'2021-02-24',1),('S105','V101','ToothPaste','toiletries',177,'2021-02-24',1),('S106','V108','King Size bed sheets','linens',172,'2021-02-15',1),('S107','V106','Cushion Cover','linens',172,'2021-03-15',1),('S108','V103','Sanitizer','toiletries',172,'2021-03-16',1),('S109','V107','Chips','Snacks',74,'2021-03-17',1),('S110','V107','Juice','Snacks',32,'2021-03-17',1),('S111','V107','Nuts','Snacks',47,'2021-03-17',1),('S112','V107','PowerBar','Snacks',88,'2021-02-17',1),('S113','V102','Bulbs','electrical',168,'2021-02-15',1),('S114','V102','Swtiches','electrical',170,'2021-02-21',1);
 /*!40000 ALTER TABLE `suppliesmst` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -553,6 +586,7 @@ CREATE TABLE `vendormst` (
   `Vendor_Name` varchar(30) NOT NULL,
   `Contact_Number` bigint NOT NULL,
   `Comments` varchar(50) DEFAULT NULL,
+  `Active_Status` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`Vendor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -563,13 +597,9 @@ CREATE TABLE `vendormst` (
 
 LOCK TABLES `vendormst` WRITE;
 /*!40000 ALTER TABLE `vendormst` DISABLE KEYS */;
-INSERT INTO `vendormst` VALUES ('V101','BoutiquePVTLTD',9228394773,'Best price'),('V102','John Hardware',9257773173,NULL),('V103','ModiCare',9288455362,'fastest Delivery'),('V104','Goderj Chemicals',9134567333,NULL),('V105','Decor',9992283451,NULL),('V106','Raymonds Blankets',9884563723,'Really great service'),('V107','Novelty Snacks',7281920033,'Best Price'),('V108','Ashok Linens',23897492,'good linens for good price\r\ntalk to Mr. Chirag');
+INSERT INTO `vendormst` VALUES ('V101','BoutiquePVTLTD',9228394773,'Best price',1),('V102','John Hardware',9257773173,NULL,1),('V103','ModiCare',9288455362,'fastest Delivery',1),('V104','Goderj Chemicals',9134567333,NULL,1),('V105','Decor',9992283451,NULL,1),('V106','Raymonds Blankets',9884563723,'Really great service',1),('V107','Novelty Snacks',7281920033,'Best Price',1),('V108','Ashok Linens',23897492,'good linens for good price\r\ntalk to Mr. Chirag',1);
 /*!40000 ALTER TABLE `vendormst` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'hotel'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -580,4 +610,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-18 16:35:10
+-- Dump completed on 2021-02-24 18:08:47

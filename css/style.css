@@ -2,6 +2,11 @@
   margin:0px;
   padding: 0px;
 }
+body{
+  padding:0;
+  padding-top: 35px;
+  margin: 0;
+}
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
@@ -9,10 +14,10 @@
     }
 
     /* Add a gray background color and some padding to the footer */
-    footer{
+    /* footer{
       padding: 25px;
       margin: auto;
-    }
+    } */
     /* color fill*/
     .f{
       color:white;
@@ -90,7 +95,7 @@ h5{
 }
 /*Login Close*/
 h1{
-  font-family:font-family: 'Lobster', cursive;
+  font-family: 'Lobster', cursive;
   color:#ffffff;
 }
 #top{
