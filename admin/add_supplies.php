@@ -12,27 +12,28 @@ if(isset($add)){
 	}
 }
 ?>
-
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
+	<h1>Add Supply Details</h1><hr>
 	<tr>
 		<th>Supply Name</th>
 		<td><input type="text" name="supply_name" class="form-control"/>
 		</td>
 	</tr>
-
 	<tr>
 	<th>Category</th>
-		<td><select class="form-control" name="category" required>
-			<option value="Cleaning">Cleaning</option>
-			<option value="tools">Tools</option>
-			<option value="linens">Linens</option>
-			<option value="toiletries">Toiletries</option>
-			<option value="electrical">Electrical</option>
-			<option value="statioery">Stationery</option>
-			<option value="Snacks">Snacks</option>
-			<option value="others">Others</option>
-		</select>
+		<td>
+			<select class="form-select" name="category" required>
+			<?php
+			$result = mysqli_query($con,'SHOW COLUMNS FROM suppliesmst WHERE field="Category"');
+			while ($row = mysqli_fetch_row($result)) {
+	      foreach(explode("','",substr($row[1],6,-2)) as $option) {
+					$word = ucwords($option);
+          print("<option value='$option'>$word</option>");
+	      }
+    	}
+			?>
+			</select>
 		</td>
 	</tr>
 
@@ -45,7 +46,7 @@ if(isset($add)){
 
 	<tr>
 		<th>Vendor</th>
-		<td><select class="form-control" name="Vendor" required>
+		<td><select class="form-select" name="Vendor" required>
 		<?php
 		$vensql=mysqli_query($con,"select * from vendormst");
 		while($ven=mysqli_fetch_assoc($vensql))

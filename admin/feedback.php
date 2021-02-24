@@ -1,3 +1,9 @@
+<?php
+@$search_term=$_GET['search'];
+if(isset($search_btn)){
+	header('location:dashboard.php?option=feedback&search='.$search.'&disabled='.!$active);
+}
+?>
 <script>
 	function delFeedback(id)
 	{
@@ -7,8 +13,20 @@
 		}
 	}
 </script>
-<table class="table table-striped table-hover">
-	<h1>Feedback</h1><hr>
+<table class="table table-bordered table-striped table-hover">
+	<div class="row">
+		<div class="col-8">
+			<h1>Feedback</h1>
+		</div>
+		<div class="col-4 text-end">
+			<div class="input-group mb-3">
+				<form method="post" enctype="multipart/form-data">
+				  <input type="text" name="search" onchange="this.form.submit()" class="form-control"  placeholder="Search...">
+					<button name="search_btn" class="btn btn-outline-info" type="submit"><i class="bi bi-search"></i></button>
+				</form>
+			</div>
+		</div>
+	</div><hr>
 	<tr>
 		<th>Sr No</th>
 		<th>User</th>
@@ -18,16 +36,16 @@
 	</tr>
 <?php
 $i=1;
-$sql=mysqli_query($con,"select b.user_id, f.*  from bookingmst b inner join feedbackmst f on b.booking_id=f.booking_id");
-while($res=mysqli_fetch_assoc($sql))
-{
+$sql=mysqli_query($con,"select b.user_id, f.*  from bookingmst b inner join feedbackmst f on b.booking_id=f.booking_id where CONCAT_WS('',user_id,f.Booking_id,Feedback) like '%$search_term%';");
+printf("error: %s\n", mysqli_error($con));
+while($res=mysqli_fetch_assoc($sql)){
 ?>
 <tr>
 		<td><?php echo $i;$i++; ?></td>
 		<td><?php echo $res['user_id']; ?></td>
 		<td><?php echo $res['Booking_id']; ?></td>
 		<td><?php echo $res['Feedback']; ?></td>
-		<td><a href="#"onclick="delFeedback('<?php echo $id; ?>')"><span class="glyphicon glyphicon-remove"style='color:red'></span></a></td>
+		<td><a class="btn btn-danger" href="#"onclick="delFeedback('<?php echo $id; ?>')">Delete Feedback</a></td>
 	</tr>
 <?php
 }

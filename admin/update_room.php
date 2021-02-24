@@ -6,7 +6,7 @@ $res=mysqli_fetch_assoc($sql);
 extract($_REQUEST);
 if(isset($update))
 {
-mysqli_query($con,"update roommst set Room_id='$rno',Room_type='$type',room_tariff='$price',room_desp='$details', Room_Status='$status' where room_id='$id' ");
+mysqli_query($con,"update roommst set Room_id='$rno',Room_type='$type',room_tariff='$price',Notes='$notes', Room_Status='$status' where room_id='$id' ");
 header('location:dashboard.php?option=rooms');
 }
 
@@ -14,6 +14,7 @@ header('location:dashboard.php?option=rooms');
 
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
+	<h1>Update Room Details</h1><hr>
 
 	<tr>
 		<th>Room No</th>
@@ -21,20 +22,18 @@ header('location:dashboard.php?option=rooms');
 		</td>
 	</tr>
 
-	</tr>
-
-
-
-	<tr>
 	<tr>
 		<th>Room Type</th>
-		<td><select class="form-control" name="type" required>
-			<option value="Deluxe Room Sea View" <?php if ($res['Room_type'] == "Deluxe Room Sea View") echo "selected='selected'";?>>Deluxe Room Sea View</option>
-			<option value="Deluxe Room Ocean View" <?php if ($res['Room_type'] == "Deluxe Room Ocean View") echo "selected='selected'";?>>Deluxe Room Ocean View</option>
-			<option value="Superior Room Sea View" <?php if ($res['Room_type'] == "Superior Room Sea viewport") echo "selected='selected'";?>>Superior Room Sea View</option>
-			<option value="Apollo Suite 1 Bedroom Sea View" <?php if ($res['Room_type'] == "Apollo Suite 1 Bedrooom Sea View") echo "selected='selected'";?>>Apollo Suite 1 Bedroom Sea View</option>
-			<option value="Deluxe Room City View" <?php if ($res['Room_type'] == "Deluxe Room City View") echo "selected='selected'";?>>Deluxe Room City View</option>
-		</select>
+		<td>
+			<select class="form-select" name="type" required>
+				<?php
+					$roomsql=mysqli_query($con,"select * from roomtypemst");
+					while($room=mysqli_fetch_assoc($roomsql))
+					{
+				?>
+						<option value="<?php echo $room['Room_type_id']?>" <?php if ($res['Room_type'] == $room['Room_type_id']) echo "selected";?>><?php echo $room['Room_Name'] ?></option>
+				<?php } ?>
+			</select>
 		</td>
 	</tr>
 
@@ -47,7 +46,7 @@ header('location:dashboard.php?option=rooms');
 	<tr>
 		<th>Status</th>
 		<td>
-			<select class="form-control" name="status"required>
+			<select class="form-select" name="status"required>
 				<option value="Reserved" <?php if ($res['Room_Status'] == "Reserved") echo "selected='selected'";?>>Reserved</option>
 				<option value="Unavailable" <?php if ($res['Room_Status'] == "Unavailable") echo "selected='selected'";?>>Unavailable</option>
 				<option value="Occupied" <?php if ($res['Room_Status'] == "Occupied") echo "selected='selected'";?>>Occupied</option>
@@ -57,8 +56,8 @@ header('location:dashboard.php?option=rooms');
 	</tr>
 
 	<tr>
-		<th>Details</th>
-		<td><textarea name="details" rows="10" class="form-control"><?php echo $res['room_desp']; ?></textarea>
+		<th>Notes</th>
+		<td><textarea name="notes" rows="10" class="form-control"><?php echo $res['Notes']; ?></textarea>
 		</td>
 	</tr>
 	<tr>

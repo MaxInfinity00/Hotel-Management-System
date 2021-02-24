@@ -3,7 +3,7 @@
 	{
 		if(confirm("You want to delete this Slider ?"))
 		{
-		window.location.href='delete_slider.php?id='+id;	
+		window.location.href='delete_slider.php?id='+id;
 		}
 	}
 </script>
@@ -18,24 +18,24 @@
 		<th>Update</th>
 		<th>Delete</th>
 	</tr>
-<?php 
+<?php
 $i=1;
 $sql=mysqli_query($con,"select * from slider");
 while($res=mysqli_fetch_assoc($sql))
 {
-$id=$res['id'];	
+$id=$res['id'];
 $img=$res['image'];
 $path="../image/Slider/$img";
 ?>
 <tr>
 		<td><?php echo $i;$i++; ?></td>
-		<td><img src="<?php echo $path;?>" width="50" height="50"/></td>
+		<td><img src="<?php echo $path;?>" width="400" height="200"/></td>
 		<td><?php echo $res['caption']; ?></td>
-		<td><a href="dashboard.php?option=update_slider&id=<?php echo $id; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-		<td><a href="#" onclick="delSlider('<?php echo $id; ?>')"><span class="glyphicon glyphicon-remove" style='color:red'></span></a></td>
-	</tr>	
-<?php 	
+		<td><a class="btn btn-primary" href="dashboard.php?option=update_slider&id=<?php echo $id; ?>">Update Image</a></td>
+		<td><a class="btn btn-danger" href="#" onclick="delSlider('<?php echo $id; ?>')">Delete Image</a></td>
+	</tr>
+<?php
 }
-?>	
-	
+?>
+
 </table>

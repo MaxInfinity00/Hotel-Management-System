@@ -11,13 +11,16 @@ if($admin=="")
 <!DOCTYPE html>
 <html lang="en">
   <head>
-     <title>Bliss Hotel</title>
+     <title>Bliss Hotel Admin Dashboard</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link href="dashboard.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+	<script src="https://kit.fontawesome.com/9d1fff1705.js" crossorigin="anonymous"></script>
+	<link href="dashboard.css" rel="stylesheet">
+
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
@@ -27,145 +30,57 @@ if($admin=="")
   </style>
   </head>
   <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Welcome <?php echo $admin; ?></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="dashboard.php?option=admin_profile">Profile</a></li>
-            <li><a href="logout.php">Logout</a></li>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+				<a class="navbar-brand" href="dashboard.php">Welcome <?php echo $admin; ?></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link"  href="logout.php">Logout</a></li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-						<li><a href="dashboard.php?option=rooms">Rooms</a></li>
-						<li><a href="dashboard.php?option=booking_details">Booking Details</a></li>
-            <li><a href="dashboard.php?option=customers">Customer Details</a></li>
-						<li><a href="dashboard.php?option=feedback">Feedback</a></li>
-						<li><a href="dashboard.php?option=staff">Staff</a></li>
-						<li><a href="dashboard.php?option=services">Services</a></li>
-            <li><a href="dashboard.php?option=supplies">Supplies</a></li>
-            <li><a href="dashboard.php?option=vendors">Vendors</a></li>
-						<li class="dropdown">
-			          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setting <span class="caret"></span></a>
+				<div class="col-md-3 col-lg-2">
+
+				<nav id="sidebarMenu" class="d-md-block bg-light sidebar collapse">
+		      <div class="position-sticky pt-3">
+		        <ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=rooms">Rooms</a></li>
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=bookings">Bookings</a></li>
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=customers">Customers</a></li>
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=feedback">Feedback</a></li>
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=staff">Staff</a></li>
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=services">Services</a></li>
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=supplies">Supplies</a></li>
+							<li class="nav-item"><a class="nav-link" href="dashboard.php?option=vendors">Vendors</a></li>
+							<li class="nav-item dropdown">
+			          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">Settings</a>
 			          <ul class="dropdown-menu">
-			            <li><a href="dashboard.php?option=update_password">Update Password</a></li>
-			            <li><a href="dashboard.php?option=slider">Edit Slider</a></li>
+									<li><a class="dropdown-item" href="dashboard.php?option=update_password">Update Password</a></li>
+									<li><a class="dropdown-item" href="dashboard.php?option=slider">Edit Slider</a></li>
 			          </ul>
-			      </li>
+			        	</li>
+		        </ul>
+		      </div>
+		    </nav>
+			</div>
+        <!-- <div class="col-sm-3 col-md-2 sidebar show">
+          <ul class="nav nav-sidebar">
           </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        </div> -->
+        <div class="col-sm-9 col-md-10 main">
 <?php
 @$opt=$_GET['option'];
-if($opt=="" || $opt=="admin_profile")
+if($opt=="")
 {
 	include('admin_profile.php');
 }
-elseif($opt=="customers")
-{
-	include('customer.php');
-}
-else if($opt=="feedback")
-{
-	include('feedback.php');
-}
-else if($opt=="slider")
-{
-	include('slider.php');
-}
-else if($opt=="update_slider")
-{
-	include('update_slider.php');
-}
-else if($opt=="add_slider")
-{
-	include('add_slider.php');
-}
-else if($opt=="update_password")
-{
-	include('update_password.php');
-}
-else if($opt=="rooms")
-{
-	include('rooms.php');
-}
-else if($opt=="add_rooms")
-{
-	include('add_rooms.php');
-}
-else if($opt=="delete_room")
-{
-	include('delete_room.php');
-}
-else if($opt=="update_room")
-{
-  include('update_room.php');
-}
-else if($opt=="booking_details")
-{
-  include('booking_details.php');
-}
-else if($opt=="user_registration")
-{
-  include('user_registration.php');
-}
-else if($opt=="staff")
-{
-	include('staff.php');
-}
-else if($opt=="services")
-{
-	include('services.php');
-}
-else if($opt=="add_services")
-{
-	include('add_services.php');
-}
-else if($opt=="update_services")
-{
-	include('update_service.php');
-}
-else if($opt=="supplies")
-{
-	include('supplies.php');
-}
-else if($opt=="add_supplies")
-{
-	include('add_supplies.php');
-}
-else if($opt=="update_supply")
-{
-  include('update_supply.php');
-}
-else if($opt=="vendors")
-{
-	include('vendors.php');
-}
-else if($opt=="vendors")
-{
-	include('vendors.php');
-}
-else if($opt=="add_vendor")
-{
-	include('add_vendor.php');
-}
-else if($opt=="send_mail")
-{
-	include('sendmail.php');
+else{
+	include($opt.'.php');
 }
 ?>
 

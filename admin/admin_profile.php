@@ -11,9 +11,8 @@ while($res=mysqli_fetch_assoc($sql))
 	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
 </head>
 <body>
-	<h1 style="background-color:#ed2553;border-radius:50px;text-align:center;font-family: 'Baloo Bhai', cursive;box-shadow:5px 5px 9px black;text-shadow:2px 2px #fff;">Admin Profile</h1><br>
-	<center><img src="devlop/Bliss_Logo.png"style="height:180px"></center>
-	<div class="container"style="width:100%;">
+	<center><img src="../logo/new royal logo2.png" style="width:75%"></center>
+	<!-- <div class="container"style="width:100%;">
 	  <form action="/action_page.php">
 	    <div class="form-group">
 	      <label for="name">User id:</label>
@@ -24,7 +23,7 @@ while($res=mysqli_fetch_assoc($sql))
 	      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd"value="<?php echo $res['Hashed_Password']; ?>">
 	    </div>
 	  </form>
-	</div>
+	</div> -->
 <?php
 }
 ?>

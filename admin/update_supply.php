@@ -3,7 +3,6 @@ $id=$_GET['id'];
 $sql=mysqli_query($con,"select * from suppliesmst where Supply_id='$id'");
 $res=mysqli_fetch_assoc($sql);
 
-extract($_REQUEST);
 if(isset($update))
 {
 	if((int)$new_stock > (int)$old_stock){
@@ -17,7 +16,7 @@ header('location:dashboard.php?option=supplies');
 
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
-
+	<h1>Update Supply Details</h1><hr>
 	<tr>
 		<th>Supply id</th>
 		<td><input type="text"  name="supply_id" value="<?php echo $res['Supply_id']; ?>"  class="form-control" readonly/>
@@ -30,16 +29,21 @@ header('location:dashboard.php?option=supplies');
 		</tr>
 	<tr>
 		<th>Category</th>
-		<td><select class="form-control" name="category" required>
-			<option value="Cleaning" <?php if ($res['Category'] == "Cleaning") echo "selected";?>>Cleaning</option>
-			<option value="tools" <?php if ($res['Category'] == "tools") echo "selected";?>>Tools</option>
-			<option value="linens" <?php if ($res['Category'] == "linens") echo "selected";?>>Linens</option>
-			<option value="toiletries" <?php if ($res['Category'] == "toiletries") echo "selected";?>>Toiletries</option>
-			<option value="electrical" <?php if ($res['Category'] == "electrical") echo "selected'";?>>Electrical</option>
-			<option value="statioery" <?php if ($res['Category'] == "stationery") echo "selected'";?>>Stationery</option>
-			<option value="Snacks" <?php if ($res['Category'] == "Snacks") echo "selected'";?>>Snacks</option>
-			<option value="others" <?php if ($res['Category'] == "others") echo "selected'";?>>Others</option>
-		</select>
+		<td><select class="form-select" name="category" required>
+			<?php
+			$result = mysqli_query($con,'SHOW COLUMNS FROM suppliesmst WHERE field="Category"');
+			while ($row = mysqli_fetch_row($result)) {
+				foreach(explode("','",substr($row[1],6,-2)) as $option) {
+					$word = ucwords($option);
+					if($res['Category'] == $option){
+						print("<option value='$option' selected>$word</option>");
+					}
+					else{
+					print("<option value='$option'>$word</option>");
+					}
+				}
+			}
+			?>
 		</td>
 	</tr>
 
@@ -61,7 +65,7 @@ header('location:dashboard.php?option=supplies');
 	<tr>
 		<th>Vendor</th>
 
-		<td><select class="form-control" name="Vendor" required>
+		<td><select class="form-select" name="Vendor" required>
 		<?php
 		$vensql=mysqli_query($con,"select * from vendormst");
 		while($ven=mysqli_fetch_assoc($vensql))

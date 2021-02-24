@@ -8,9 +8,7 @@ if(isset($add))
 	}
 	else
 	{
-	// $img=$_FILES['img']['name'];
-	mysqli_query($con,"insert into roommst values('$rno','$type','$price','$status','$details')");
-	// move_uploaded_file($_FILES['img']['tmp_name'],"../image/rooms/".$_FILES['img']['name']);
+	mysqli_query($con,"insert into roommst values('$rno','$type','$price','$status','$notes',true)");
 	echo "Room added successfully";
 	}
 }
@@ -27,13 +25,16 @@ if(isset($add))
 
 	<tr>
 		<th>Room Type</th>
-		<td><select class="form-control" name="type"required>
-			<option value="Deluxe Room Sea View" >Deluxe Room Sea View</option>
-			<option value="Deluxe Room Ocean View">Deluxe Room Ocean View</option>
-			<option value="Superior Room Sea View">Superior Room Sea View</option>
-			<option value="Apollo Suite 1 Bedroom Sea View">Apollo Suite 1 Bedroom Sea View</option>
-			<option value="Deluxe Room City View">Deluxe Room City View</option>
-		</select>
+		<td>
+			<select class="form-select" name="type"required>
+				<?php
+					$roomsql=mysqli_query($con,"select * from roomtypemst");
+					while($room=mysqli_fetch_assoc($roomsql))
+					{
+				?>
+						<option value="<?php echo $room['Room_type_id']?>"><?php echo $room['Room_Name'] ?></option>
+				<?php } ?>
+			</select>
 		</td>
 	</tr>
 
@@ -45,7 +46,7 @@ if(isset($add))
 	<tr>
 		<th>Status</th>
 		<td>
-			<select class="form-control" name="status"required>
+			<select class="form-select" name="status"required>
 				<option value="Reserved" >Reserved</option>
 				<option value="Unavailable" >Unavailable</option>
 				<option value="Occupied" >Occupied</option>
@@ -54,8 +55,8 @@ if(isset($add))
 		</td>
 	</tr>
 	<tr>
-		<th>Details</th>
-		<td><textarea name="details"  class="form-control"></textarea>
+		<th>Notes</th>
+		<td><textarea name="notes" class="form-control"></textarea>
 		</td>
 	</tr>
 

@@ -20,6 +20,7 @@ if(isset($add)){
 
 <form method="post" enctype="multipart/form-data">
 <table class="table table-bordered">
+	<h1>Add Service Details</h1><hr>
 	<tr>
 		<th>Service Name</th>
 		<td><input type="text" name="service_name" class="form-control"/>
@@ -28,7 +29,7 @@ if(isset($add)){
 
 	<tr>
 		<th>Associated Supply</th>
-		<td><select class="form-control" name="Supply" required>
+		<td><select class="form-select" name="Supply" required>
 			<option value="null">No Supply</option>
 			<?php
 			$supsql=mysqli_query($con,"select * from suppliesmst");
