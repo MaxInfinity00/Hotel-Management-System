@@ -1,0 +1,86 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+table,th,td{
+  text-align: center;
+  vertical-align: middle;
+}
+.nav-item, .navbar-brand{
+  padding: 0 18px;
+}
+@media (min-width:600px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+.sidebar .nav-link{
+  color: #5b6d77;
+  font-weight: 500;
+}.sidebar .nav-link:hover{
+  color: #2b3d47;
+  font-weight: 600;
+}
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+/* Remove the navbar's default margin-bottom and rounded borders */
+.empty-row{
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+.table-head.row{
+  margin-top: 15px;
+}
+.icon{
+  font-family: FontAwesome;
+  content: "\f002" !important;
+font-family: FontAwesome !important;
+}
+.white-text-btn,.white-text-btn:hover{
+  color:white;
+}
